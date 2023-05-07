@@ -8,6 +8,9 @@ public class Hero : MonoBehaviour
     public float walkSpeed = 10f;
     public float runSpeed = 18f;
     public float rotationSpeed = 10f;
+    public float mind = 100f;
+
+
     private Quaternion targetRotation;
     private Rigidbody2D rb;
     private Collider2D col;
@@ -22,7 +25,6 @@ public class Hero : MonoBehaviour
         col = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         //Бег
@@ -53,4 +55,5 @@ public class Hero : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Применяем вращение к персонажу.
     }
+
 }
