@@ -48,3 +48,9 @@ TagManager:
   - name: Hero
     uniqueID: 3466219149
     locked: 0
+  - name: Items
+    uniqueID: 1276860937
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 1245742153
+    locked: 0
