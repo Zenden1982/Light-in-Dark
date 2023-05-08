@@ -21,7 +21,7 @@ public class Fleshlight : MonoBehaviour
     private AIPath aIPath;
     private AudioSource enemySound;
     private Light2D fleshlightLight;
-
+ 
     void Start()
     {
         chargeImage = GameObject.Find("Charges").GetComponent<Image>();

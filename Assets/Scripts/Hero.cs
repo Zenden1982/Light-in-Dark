@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Hero : MonoBehaviour
     [Header("Set Dynamically")]
     public bool walk = false;
     public float speed = 0;
+    public Image brainSprite;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -25,6 +27,20 @@ public class Hero : MonoBehaviour
         col = GetComponent<Collider2D>();
     }
 
+    private void Update()
+    {
+        //—лежение за курсором
+        Vector3 mousePos = Input.mousePosition;
+        //mousePos.z = 10f; // ”станавливаем дистанцию до камеры, чтобы мы могли получить точку в пространстве.
+        Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos); // ѕолучаем точку в пространстве, на которую смотрит курсор.
+
+        Vector3 targetDir = lookPos - transform.position; // ¬ычисл€ем направление, в котором должен повернутьс€ персонаж.
+        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg + 90; // ¬ычисл€ем угол поворота в градусах.
+        targetRotation = Quaternion.AngleAxis(angle, Vector3.forward); // —оздаем кватернион поворота.
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // ѕримен€ем вращение к персонажу.
+        MindController();
+    }
     void FixedUpdate()
     {
         //Ѕег
@@ -44,16 +60,14 @@ public class Hero : MonoBehaviour
         animator.SetBool("Walk", walk);
 
 
-        //—лежение за курсором
-        Vector3 mousePos = Input.mousePosition;
-        //mousePos.z = 10f; // ”станавливаем дистанцию до камеры, чтобы мы могли получить точку в пространстве.
-        Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos); // ѕолучаем точку в пространстве, на которую смотрит курсор.
+    }
 
-        Vector3 targetDir = lookPos - transform.position; // ¬ычисл€ем направление, в котором должен повернутьс€ персонаж.
-        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg + 90; // ¬ычисл€ем угол поворота в градусах.
-        targetRotation = Quaternion.AngleAxis(angle, Vector3.forward); // —оздаем кватернион поворота.
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // ѕримен€ем вращение к персонажу.
+    void MindController()
+    {
+        Color color = Color.white;
+        color.a = mind/100;
+        brainSprite.color = color;
     }
 
 }
