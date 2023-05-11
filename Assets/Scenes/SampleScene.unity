@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &159236658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5297,7 +5297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0176cdae9a917ac47b1c27bc119fb937, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b4803db6119e90479283a5e64747c17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6385,27 +6385,27 @@ PrefabInstance:
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 8b1aa36130fb9c64684f0ab40cbfacf2, type: 3}
+      objectReference: {fileID: 21300000, guid: 6b4803db6119e90479283a5e64747c17, type: 3}
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: e67088d370e802645a4d173cfc9bc478, type: 3}
+      objectReference: {fileID: 21300000, guid: 1f2253eec6666e8489984e28680771dd, type: 3}
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 6cfabeaa55b243f45a3ff137d0e2b2af, type: 3}
+      objectReference: {fileID: 21300000, guid: e539a8800f16f2c4fa214563f3f325bb, type: 3}
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 71ee4b9bf4032984c9b7a829ccdb644d, type: 3}
+      objectReference: {fileID: 21300000, guid: 41cf03c2bbe22314ba60bb7b2748de2d, type: 3}
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: 36928edc04aced3479b74a8a2111cc75, type: 3}
+      objectReference: {fileID: 21300000, guid: 60ed2ba050a341146927bc228c709b9c, type: 3}
     - target: {fileID: 7728467133825898827, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
       propertyPath: charges.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: 0176cdae9a917ac47b1c27bc119fb937, type: 3}
+      objectReference: {fileID: 21300000, guid: dc451dfe0aa9c9646abe30a93493ef37, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2588fc1067b9c2341a55dc2815aa241b, type: 3}
 --- !u!1001 &8323551347025829240
@@ -6419,9 +6419,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u041C\u0430\u043D\u0435\u043A\u0435\u043D Sprite"
       objectReference: {fileID: 0}
+    - target: {fileID: 8323551347574813550, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323551347574813550, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323551347574813551, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fce573d5f631c9e458e314c3da52d4b3, type: 3}
     - target: {fileID: 8323551347697948488, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323551347697948488, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323551347697948488, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8323551347697948488, guid: 8f6c3a2c74dd7774db895a7dc25ca965, type: 3}
       propertyPath: m_LocalPosition.x

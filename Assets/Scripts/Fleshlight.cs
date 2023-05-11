@@ -49,18 +49,18 @@ public class Fleshlight : MonoBehaviour
         switch (chargeBattery)
         {
             case 100:
-                chargeImage.sprite = charges[5]; break;
+                chargeImage.sprite = charges[0]; break;
             case 80:
-                chargeImage.sprite = charges[0];
+                chargeImage.sprite = charges[1];
                 break;
             case 60:
-                chargeImage.sprite = charges[1]; break;
+                chargeImage.sprite = charges[2]; break;
             case 40:
-                chargeImage.sprite= charges[2]; break;
+                chargeImage.sprite= charges[3]; break;
             case 20:
-                chargeImage.sprite = charges[3]; break;
-            case 0:
                 chargeImage.sprite = charges[4]; break;
+            case 0:
+                chargeImage.sprite = charges[5]; break;
         }
     }
     private void CHargeControler()
