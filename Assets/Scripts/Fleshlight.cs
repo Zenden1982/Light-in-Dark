@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using static UnityEngine.InputManagerEntry;
 
 public class Fleshlight : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class Fleshlight : MonoBehaviour
     public float chargeBattery;
     public float chargeMinus = 25;
     public Sprite[] charges;
-    
 
     [Header("Set in Dynamically")]
     private Collider2D fleshlightCollider;
@@ -25,7 +25,6 @@ public class Fleshlight : MonoBehaviour
     void Start()
     {
         chargeImage = GameObject.Find("Charges").GetComponent<Image>();
-        chargeBattery = chargeBatteryMax;
         fleshlightCollider = GetComponent<Collider2D>();
         InvokeRepeating("CHargeControler", 2, 2);
         fleshlightLight = GetComponent<Light2D>();
@@ -35,6 +34,13 @@ public class Fleshlight : MonoBehaviour
 
     public void Update()
     {
+        
+        if (chargeBattery<=100 && chargeBattery>80) chargeImage.sprite = charges[0];
+        if(chargeBattery<= 80 && chargeBattery>60) chargeImage.sprite = charges[1];
+        if(chargeBattery<= 60 && chargeBattery>40) chargeImage.sprite = charges[2];
+        if(chargeBattery<= 40 && chargeBattery>20) chargeImage.sprite = charges[3];
+        if (chargeBattery<= 20 && chargeBattery>0) chargeImage.sprite = charges[4];
+        if (chargeBattery<= 0) chargeImage.sprite = charges[5];
         if (chargeBattery <= 0)
         {
             fleshlightCollider.enabled = false;
@@ -46,22 +52,7 @@ public class Fleshlight : MonoBehaviour
             fleshlightLight.enabled = true;
         }
 
-        switch (chargeBattery)
-        {
-            case 100:
-                chargeImage.sprite = charges[0]; break;
-            case 80:
-                chargeImage.sprite = charges[1];
-                break;
-            case 60:
-                chargeImage.sprite = charges[2]; break;
-            case 40:
-                chargeImage.sprite= charges[3]; break;
-            case 20:
-                chargeImage.sprite = charges[4]; break;
-            case 0:
-                chargeImage.sprite = charges[5]; break;
-        }
+
     }
     private void CHargeControler()
     {
@@ -72,20 +63,44 @@ public class Fleshlight : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
+            ShadowEnemy shadowEnemy = collision.transform.GetComponent<ShadowEnemy>();
+            shadowEnemy.fleshing = true;
             aIPath = collision.transform.GetComponent<AIPath>();
             aIPath.canMove = false;
-            enemySound = collision.transform.GetComponent<AudioSource>();
-            enemySound.Stop();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.transform.tag == "Enemy")
         {
+            ShadowEnemy shadowEnemy = collision.transform.GetComponent<ShadowEnemy>();
+            shadowEnemy.fleshing = false;
             aIPath = collision.transform.GetComponent<AIPath>();
             aIPath.canMove = true;
-            enemySound.Play();
+            //enemySound.Play();
         }
     }
 
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("chargeBattery", chargeBattery);
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            PlayerPrefs.SetFloat("chargeBattery", chargeBattery);
+        }
+    }
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetFloat("chargeBattery", chargeBattery);
+    }
+
+    void OnEnable()
+    {
+        chargeBattery = PlayerPrefs.GetFloat("chargeBattery", 100f);
+    }
 }

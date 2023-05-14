@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Hero : MonoBehaviour
 {
@@ -10,8 +12,10 @@ public class Hero : MonoBehaviour
     public float runSpeed = 18f;
     public float rotationSpeed = 10f;
     public float mind = 100f;
+    public GameObject Fleshlight;
 
-
+    private bool FleshlightOn = true;
+    private bool FleshlightPurple = false;
     private Quaternion targetRotation;
     private Rigidbody2D rb;
     private Collider2D col;
@@ -40,6 +44,11 @@ public class Hero : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Применяем вращение к персонажу.
         MindController();
+        FleshlightController();
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene("Scene 1");
+        }
     }
     void FixedUpdate()
     {
@@ -62,12 +71,59 @@ public class Hero : MonoBehaviour
 
     }
 
-
     void MindController()
     {
-        Color color = Color.white;
+        Color color = new Color(1, 0.5f, 0.5f, 1);
         color.a = mind/100;
         brainSprite.color = color;
+    }
+
+    void FleshlightController()
+    {
+        if (Input.GetMouseButtonDown(0) && FleshlightOn == true)
+        {
+            Fleshlight.SetActive(false);
+            FleshlightOn = false;
+        } else if (Input.GetMouseButtonDown(0) && FleshlightOn == false)
+        {
+            Fleshlight.SetActive(true);
+            FleshlightOn = true;
+
+        }
+
+        if (Input.GetMouseButtonDown(1) && FleshlightPurple==false)
+        {
+            Light2D light2D = Fleshlight.GetComponentInChildren<Light2D>();
+            light2D.color = new Color(1, 0f, 1, 1);
+            FleshlightPurple = true;
+        } else if (Input.GetMouseButtonDown(1) && FleshlightPurple == true)
+        {
+            Light2D light2D = Fleshlight.GetComponentInChildren<Light2D>();
+            light2D.color = Color.white;
+            FleshlightPurple = false;
+        }
+    }
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("mind", mind);
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            PlayerPrefs.SetFloat("mind", mind);
+        }
+    }
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetFloat("mind", mind);
+    }
+
+    void OnEnable()
+    {
+        mind = PlayerPrefs.GetFloat("mind", 100f);
     }
 
 }
