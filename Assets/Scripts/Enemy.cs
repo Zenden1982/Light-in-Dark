@@ -28,7 +28,10 @@ public class Enemy : MonoBehaviour
         {
             // Рассчитываем урон
             float damage = Mathf.Lerp(minDamage, maxDamage, Mathf.InverseLerp(minDistance, maxDistance, distance));
-            hero.mind -= damage * Time.deltaTime;
+            if (hero.mind >0)
+            {
+                hero.mind -= damage * Time.deltaTime;
+            }
         }
     }
 }

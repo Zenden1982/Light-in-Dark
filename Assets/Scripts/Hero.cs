@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class Hero : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Hero : MonoBehaviour
     public float rotationSpeed = 10f;
     public float mind = 100f;
     public GameObject Fleshlight;
+
+    public VideoPlayer videoPlayer;
 
     private bool FleshlightOn = true;
     private bool FleshlightPurple = false;
@@ -49,6 +52,8 @@ public class Hero : MonoBehaviour
         {
             SceneManager.LoadScene("Scene 1");
         }
+
+        WhiteNoiseEffect();
     }
     void FixedUpdate()
     {
@@ -126,4 +131,11 @@ public class Hero : MonoBehaviour
         mind = PlayerPrefs.GetFloat("mind", 100f);
     }
 
+    void WhiteNoiseEffect()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.targetCameraAlpha = (1-(mind/100))*0.1f;
+        }
+    }
 }
