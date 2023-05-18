@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Fleshlight
   layers:
   - Default
   - TransparentFX
@@ -42,9 +43,6 @@ TagManager:
   - name: Floar
     uniqueID: 1527077031
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Hero
     uniqueID: 3466219149
     locked: 0
@@ -53,4 +51,7 @@ TagManager:
     locked: 0
   - name: New Layer 4
     uniqueID: 1245742153
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

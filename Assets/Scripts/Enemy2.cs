@@ -16,7 +16,7 @@ public class Enemy2 : MonoBehaviour
 
     public void Update()
     {
-       GameObject fleshlight = GetComponent<GameObject>();
+      
        if (!onLight && Input.GetMouseButton(0))
         {
             attack = false;
@@ -29,7 +29,7 @@ public class Enemy2 : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Fleshlight")
         {
             attack = true;
             onLight = true;
@@ -38,7 +38,7 @@ public class Enemy2 : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Fleshlight")
         {
             onLight = false;
         }

@@ -9,11 +9,15 @@ public class Enemy : MonoBehaviour
     public float minDamage = 1f; // Минимальный урон, наносимый врагом
 
     private Hero hero; // Ссылка на класс Hero
+    private GameObject fleshlight;
+    private ShadowEnemy shadowEnemy;
 
     void Start()
     {
         // Найдите класс Hero, который находится на игроке
         hero = player.GetComponent<Hero>();
+        fleshlight = GameObject.Find("Fleshlight");
+        shadowEnemy = GetComponent<ShadowEnemy>();
     }
 
     void Update()
@@ -28,7 +32,7 @@ public class Enemy : MonoBehaviour
         {
             // Рассчитываем урон
             float damage = Mathf.Lerp(minDamage, maxDamage, Mathf.InverseLerp(minDistance, maxDistance, distance));
-            if (hero.mind >0)
+            if (hero.mind > 0 && !shadowEnemy.fleshing)
             {
                 hero.mind -= damage * Time.deltaTime;
             }

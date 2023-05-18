@@ -9,10 +9,8 @@ public class Battery : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             Fleshlight fleshlight = GameObject.Find("Light").GetComponent<Fleshlight>();
-            fleshlight.chargeBattery = 100f;
+            fleshlight.chargeBattery  = 100f;
             Destroy(this.gameObject);
         }
     }
-
-
 }
